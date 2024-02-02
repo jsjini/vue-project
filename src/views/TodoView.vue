@@ -26,22 +26,17 @@ export default {
         saveTodo(todo) {
             let idx = this.todoList.length - 1;
             let no = parseInt(this.todoList[idx].no) + 1;
-            let todos = { no, todo };
+            let todos = { no, todo, cancelFlag: false };
             this.todoList.push(todos);
         },
         deleteTodo(no) {
             this.todoList = this.todoList.filter(todo => todo.no == no ? false : true);
         },
-        checkTodo(no) {
-            console.log(no);
-            console.log(this.todoList[0].no);
-            for(let i= 0; i <= this.todoList.length; i++){
-                console.log(this.todoList[i].no);
-            }
-            if(this.todoList == true){
-                this.todoList.cancelFlag = false;
-            } else if (no == false){
-                this.todoList.cancelFlag = true;
+        checkTodo(todo) {
+            if(todo.cancelFlag == true){
+                todo.cancelFlag = false;
+            } else if (todo.cancelFlag == false){
+                todo.cancelFlag = true;
             }
         }
     }
